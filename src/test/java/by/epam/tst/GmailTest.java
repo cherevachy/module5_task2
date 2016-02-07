@@ -34,7 +34,7 @@ public class GmailTest extends BaseTest {
         mail = new Mail("ivanovtestbox@gmail.com", "tam1test1" + new Date(), "Hello, Yuri!" + new Date());
         final LoginPage loginPage = new LoginPage(webDriver);
         final InboxPage inboxPage = loginPage.loginAs(user);
-        inboxPage.createEmail(mail).sendEmail();
+        inboxPage.createEmail(mail).sendEmail().highlightElement(webDriver, inboxPage.getSuccessMsg());
         assertTrue("Mail was sent correctly", inboxPage.elementExists(inboxPage.getSuccessMsg()));
     }
 
