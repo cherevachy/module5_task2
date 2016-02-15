@@ -2,6 +2,8 @@ package by.epam.ta.tst;
 
 import by.epam.ta.businessobjects.Mail;
 import by.epam.ta.businessobjects.User;
+import by.epam.ta.runner.TestProperties;
+import by.epam.ta.core.webdriver.Browser;
 
 import org.junit.After;
 import org.junit.Before;
@@ -13,20 +15,23 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
-    private static final String BASE_URL = "http://gmail.com";
+    private static final String BASE_URL = TestProperties.getInstance().getBaseUrl();
 
     protected WebDriver webDriver;
 
     protected User user;
 
     protected Mail mail;
+    
+    protected TestProperties testProperties;
 
     @Before
     public void setUp() {
-        user = new User("ivanovtestbox@gmail.com", "AuroraBorealis2015%");
-        this.webDriver = this.getWebDriver();
+        user = new User(TestProperties.getInstance().getUserName(), TestProperties.getInstance().getUserPassword());
+        //this.webDriver = this.getWebDriver();
+        webDriver = Browser.initBrowser();
         this.webDriver.get(BASE_URL);
-    }
+        }
 
     private WebDriver getWebDriver() {
         final WebDriver webDriver = new ChromeDriver();
@@ -41,6 +46,7 @@ public class BaseTest {
 
     @After
     public void cleanUp() {
-        webDriver.quit();
+        //webDriver.quit();
+    	Browser.closeDriver();
     }
 }

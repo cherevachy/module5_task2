@@ -9,9 +9,9 @@ public class WebDriverFactoryManager {
 
     private final static Logger logger = Logger.getLogger(WebDriverFactoryManager.class);
 
-    private String baseBinariesPath = "src\\main\\resources\\wd_binaries\\";
+    private String baseBinariesPath = "src\\main\\resources\\";
     private String ieBinary = baseBinariesPath + "ie\\IEDriverServer_x32_2.44.0.exe";
-    private String chromeBinary = baseBinariesPath + "chrome\\chromedriver_x32_2.15.exe";
+    private String chromeBinary = baseBinariesPath + "chromedriver.exe";
 
     private static BrowserType defaultBrowserType = BrowserType.FIREFOX;
 
@@ -27,10 +27,10 @@ public class WebDriverFactoryManager {
     }
 
     public WebDriver createWedDriverForBrowser() {
-        return createWedDriverForBrowser(defaultBrowserType);
+        return createWebDriverForBrowser(defaultBrowserType);
     }
 
-    public WebDriver createWedDriverForBrowser(BrowserType browserType) {
+    public WebDriver createWebDriverForBrowser(BrowserType browserType) {
         logger.info("Creating WebDriver instance by Type: '" + browserType + "'");
         WebDriverFactory result;
         switch (browserType) {
