@@ -6,10 +6,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.google.common.base.Preconditions;
 
-/**
- * Factory implementation for Chrome WebDriver
- * Created by Daniil_Novikau on 8/28/2015.
- */
 public class ChromeWebDriverFactory implements WebDriverFactory {
 
     private String pathToBinary;
