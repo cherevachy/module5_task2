@@ -46,7 +46,7 @@ public class BaseTest {
 
     @After
     public void cleanUp() {
-        //webDriver.quit();
-    	Browser.closeDriver();
+    	//webDriver.quit();
+    	//Browser.closeDriver();
     }
 }

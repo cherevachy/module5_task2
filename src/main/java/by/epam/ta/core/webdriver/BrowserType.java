@@ -7,8 +7,6 @@ public enum BrowserType {
 
     FIREFOX, CHROME, IE;
 
-    private final static Logger LOGGER = Logger.getLogger(BrowserType.class);
-
     public static BrowserType byName(String name) {
         if ((name == null) || (name.isEmpty()))
             return null;
@@ -16,7 +14,7 @@ public enum BrowserType {
         try {
             return BrowserType.valueOf(name.toUpperCase());
         } catch (IllegalArgumentException e) {
-            LOGGER.warn("Unknown browser type: '" + name + "'. Please, use one of " + Joiner.on('\n').join(BrowserType.values())
+        	System.out.println("Unknown browser type: '" + name + "'. Please, use one of " + Joiner.on('\n').join(BrowserType.values())
                     + " values");
             return null;
         }

@@ -8,6 +8,12 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
+	@FindBy(xpath="//*[@id='account-chooser-link']")
+    private WebElement signInDiffAcc;
+	
+	@FindBy(xpath="//*[@id='account-chooser-add-account']")
+    private WebElement addAcc;
+	
     @FindBy(name="Email")
     private WebElement txbEmail;
 
@@ -36,4 +42,10 @@ public class LoginPage extends BasePage {
         return new InboxPage(this.webDriver);
     }
 
+    public LoginPage signIn() {
+    	this.signInDiffAcc.click();
+    	this.addAcc.click();
+    	return this;
+    }
+    
 }

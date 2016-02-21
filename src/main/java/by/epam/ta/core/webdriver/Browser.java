@@ -10,27 +10,26 @@ import by.epam.ta.runner.GlobalConfiguration;
 
 public class Browser {
 
-    private final static Logger logger = Logger.getLogger(Browser.class);
-
     private static WebDriver webDriver;
 
-    public static WebDriver getInstance(){
-        return webDriver;
-    }
+    //public static WebDriver getInstance(){
+        //return webDriver;
+    //}
 
     public static WebDriver initBrowser() {
+    	if (null == webDriver) {
         BrowserType browserType = GlobalConfiguration.getInstance().getBrowserType();
         WebDriverFactoryManager driverManager = new WebDriverFactoryManager(browserType);
 
         webDriver = driverManager.createWebDriverForBrowser(browserType);
-        webDriver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        logger.info("Browser started");
-		return webDriver;
+        webDriver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    	}
+        return webDriver;
     }
 
     public static void closeDriver() {
         webDriver.quit();
-        logger.info("Browser closed");
+        webDriver = null;
     }
 }

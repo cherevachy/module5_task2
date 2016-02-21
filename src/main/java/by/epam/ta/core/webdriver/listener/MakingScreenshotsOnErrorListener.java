@@ -17,7 +17,8 @@ public class MakingScreenshotsOnErrorListener extends TestListenerAdapter {
 
     @Override
     public void onTestFailure(ITestResult testResult) {
-        WebDriver browser = Browser.getInstance();
+        //WebDriver browser = Browser.getInstance();
+    	WebDriver browser = Browser.initBrowser();
         if ( null != browser ) {
             try {
                 File srcFile = ScreenshotUtils.makeScreenshot(browser);

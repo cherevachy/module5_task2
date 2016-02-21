@@ -18,16 +18,17 @@ public class GmailTest extends BaseTest {
     @Test
     public void test01LoginAsValidUser() {
         final String text = "ivanovtestbox@gmail.com - Gmail";
-        final LoginPage loginPage = new LoginPage(webDriver);
+        final LoginPage loginPage = new LoginPage(webDriver).signIn();
         final InboxPage inboxPage = loginPage.loginAs(user);
         final String actualPageTitle = inboxPage.getPageTitle();
         assertTrue("User is logged into gmail inbox correctly", actualPageTitle.contains(text));
+        inboxPage.signOut();
     }
 
     @Test(expected = PageNotLoadedException.class)
     public void test02LoginAsInvalidUser() {
         user.setPassword("123456!23aAQE");
-        final LoginPage loginPage = new LoginPage(webDriver);
+        final LoginPage loginPage = new LoginPage(webDriver).signIn();
         loginPage.loginAs(user);
     }
 
@@ -40,6 +41,7 @@ public class GmailTest extends BaseTest {
         inboxPage.createEmail(mail).sendEmail();
         highlight.highlightElement(webDriver, inboxPage.getSuccessMsg());
         assertTrue("Mail was sent correctly", inboxPage.elementExists(inboxPage.getSuccessMsg()));
+        inboxPage.signOut();
     }
 
 }

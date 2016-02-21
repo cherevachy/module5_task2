@@ -19,6 +19,12 @@ public class InboxPage extends BasePage {
 
     private final static String pageElementLocator = "//*[@role='button' and text()='COMPOSE']";
 
+    @FindBy(xpath="//*[contains(@title,'ivanovtestbox@gmail.com')]")
+    private WebElement signOutMenu;
+    
+    @FindBy(xpath="//*[text()='Sign out']")
+    private WebElement signOutBtn;
+    
     @FindBy(xpath="//*[@role='button' and text()='COMPOSE']")
     private WebElement composeButton;
 
@@ -40,6 +46,12 @@ public class InboxPage extends BasePage {
     @FindBy(xpath="//*[contains(text(), 'Your message has been sent.')]")
     private WebElement successMsg;
 
+    public InboxPage signOut() {
+        this.signOutMenu.click();
+        this.signOutBtn.click();
+        return this;
+    }
+    
     public InboxPage(final WebDriver webDriver) {
         super(webDriver, pageElementLocator);
     }
